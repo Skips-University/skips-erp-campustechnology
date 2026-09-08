@@ -1,0 +1,114 @@
+.radioBtn{
+    position: absolute;
+    /* left: 0px; */
+
+}
+.radioOne{
+    left: 314px;
+    top: 55px;
+}
+
+.radioTwo{
+    left: 314px;
+    top: 143px;
+}
+
+.radioThree{
+    left: 314px ;
+    top: 224px 
+}
+
+.radioRed{
+    left: 419px;
+    top: 56px;
+}
+
+.radioYellow{
+    left: 419px;
+    top: 145px;
+}
+
+.radioBlue{
+    left: 419px;
+    top: 225px;
+}
+
+
+.line{
+position: absolute;
+width: 35px;
+height: 4px;
+background-color: black;
+
+}
+
+.lineConn{
+    width: 92px;
+    height: 3px;
+    background-color: black;
+    position: absolute;
+   
+}
+
+.lineConn1toR{
+    top: 64px;
+    left: 332px;
+}
+.lineConn2toY{
+    top: 152px;
+    left: 332px;
+}
+
+.lineConn3toB{
+    top: 233px;
+    left: 332px;
+}
+.lineConn2toB{
+    top: 193px;
+    left: 316px;
+    width: 123px;
+    transform: rotate(220deg);
+
+}
+
+.lineConn3toY{
+    top: 193px;
+    left: 316px;
+    width: 123px;
+    transform: rotate(142deg);
+
+}
+
+
+/* RotatingImage.css */
+
+/* Clockwise rotation */
+@keyframes rotateClockwise {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Anticlockwise rotation */
+  @keyframes rotateAntiClockwise {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  
+
+  .rotateClockwise {
+    animation: rotateClockwise 3s linear infinite;
+  }
+  
+
+  .rotateAntiClockwise {
+    animation: rotateAntiClockwise 3s linear infinite;
+  }
+  

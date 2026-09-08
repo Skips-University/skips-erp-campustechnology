@@ -1,0 +1,126 @@
+.csstop {
+    position: relative;
+    margin: auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: rgba(246, 247, 248, 0.5);
+    border: 1px solid rgb(232, 234, 238);
+    border-radius: 12px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.css-card {
+    position: relative;
+    margin: auto;
+    padding: 24px;
+    background-color: rgba(246, 247, 248, 0.5);
+    border: 1px solid rgb(232, 234, 238);
+    border-radius: 12px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-image {
+    width: 614px;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.offbtn1,
+.onbtn1 {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.offbtn2,
+.onbtn2 {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.offbtn3,
+.onbtn4 {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    width: 40px;
+    height: 41px;
+}
+
+
+.offbtn5,
+.onbtn6 {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    width: 40px;
+    height: 41px;
+}
+
+.offbtn1 {
+    top: 34px;
+    left: 54px;
+}
+
+.onbtn1 {
+    top: 34px;
+    left: 54px;
+}
+
+.offbtn2 {
+    top: 134px;
+    left: 51px;
+}
+
+.onbtn2 {
+    top: 134px;
+    left: 51px;
+}
+
+.offbtn3 {
+    top: 88px;
+    right: 25px;
+}
+
+.onbtn4 {
+    top: 88px;
+    right: 25px;
+}
+
+.offbtn5 {
+    top: 244px;
+    right: 25px;
+}
+
+.onbtn6 {
+    top: 244px;
+    right: 25px;
+}
+
+/* @media (max-width: 480px) {
+    .offbtn1,
+    .onbtn1,
+    .offbtn2,
+    .onbtn2 {
+        width: 30px;
+        height: 30px;
+    }
+} */

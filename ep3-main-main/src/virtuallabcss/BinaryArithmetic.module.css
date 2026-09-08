@@ -1,0 +1,86 @@
+
+/* Binary Arithmetic SImulation CSS */
+
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h5 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 20px;
+  }
+  
+  .binaryArithBtn {
+    margin-right: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .binaryArithBtn:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+  }
+  
+  .bitToggle {
+    background-color: #28a745;
+  }
+  
+  
+  .binaryArithTable {
+    width: 100% ;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+  }
+  
+  .binaryArithTable thead > tr{
+  
+    border: 2px solid black;
+  }
+  /* .tableHead {
+  
+    font-weight: bold;
+    background-color:#1976d2c4;
+    font-weight: bolder !important;
+    font-size: 1rem !important;
+    color: white !important;
+  } */
+  
+  .binaryRow{
+    border: 2px solid gray;
+  }
+  .selectedRow {
+    background-color: #9dc6f0 !important;
+  
+  }
+  
+  .resultRow {
+    background-color: #9ff181 !important;
+  
+  }
+  
+  .resultTableBox {
+    width: 50% !important;
+  }
+  .resultTable {
+    border: 2px solid black; 
+    border-collapse: collapse; 
+  }
+  
+  .resultTable td {
+    border: 1px solid black; 
+  }
+  
+  .resultTable th {
+    border: 1px solid black;
+  }
+  
+  

@@ -1,0 +1,148 @@
+.diagramWrapper {
+    display: flex;
+    gap: 110px;
+    padding-left: 150px;
+    margin-top: 30px;
+    border: 2px solid grey;
+ 
+}
+
+.diagram {
+    margin-top: 40px;
+    position: relative;
+
+}
+
+.binaryInpVal {
+    position: absolute;
+    font-size: 26px;
+    left: -90px;
+    border: 2px solid rgb(184, 184, 184);
+    padding: 1px 20px;
+
+}
+
+.greyInpVal {
+    position: absolute;
+    font-size: 26px;
+    right: -90px;
+    border: 2px solid rgb(184, 184, 184);
+    padding: 1px 20px;
+}
+
+.circuit {
+    margin: 10px auto;
+}
+
+.switchbtn {
+    position: absolute;
+    left: -24px;
+    cursor: pointer;
+}
+
+.btnB3 {
+    top: 10px;
+}
+
+.btnB2 {
+    top: 120px;
+}
+
+.btnB1 {
+    top: 180px;
+}
+
+.btnB0 {
+    top: 252px;
+}
+
+.lightBtn{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    position: absolute;
+    right: -10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.btngrey{
+    background-color: grey;
+}
+
+.btnGreen{
+    background-color: green;
+}
+
+.lightE3 {
+    top: 30px;
+}
+
+.lightE2 {
+    top: 113px;
+}
+
+.lightE1 {
+    top: 238px;
+}
+
+.lightE0 {
+    top: 314px;
+}
+
+.greylight {
+    width: 32px !important;
+}
+
+.converterWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.converter {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+.binaryConvertingValBox, .greyConvertingValBox {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 10px;
+    border-radius: 5px;
+   
+}
+
+.binaryConvertingValBox {
+    top: 48%;
+    left: -8%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+}
+
+.greyConvertingValBox {
+    top: 50%;
+    right: -22%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.binaryConvertingVal, .greyConvertingVal {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    border: 2px solid black;
+    padding: 6px ;
+    margin-bottom: 10px;
+}
+
+.decimalBinary, .decimalGrey {
+    font-size: 20px;
+    margin: 0;
+}

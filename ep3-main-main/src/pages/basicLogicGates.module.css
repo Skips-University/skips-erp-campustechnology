@@ -1,0 +1,52 @@
+.absolute {
+    position: absolute;
+}
+
+.imgContainer {
+
+    border: 1px solid rgb(70, 71, 70);
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+
+
+.firstSwitchBtn {
+    position: absolute;
+    top: 187px;
+    left: 35px;
+    width: 49px;
+    height: 25px;
+}
+
+.secondSwitchBtn {
+    position: absolute;
+    top: 237px;
+    left: 35px;
+    width: 49px;
+    height: 25px;
+}
+
+.thirdSwitchBtn {
+    position: absolute;
+    top: 284px;
+    left: 35px;
+    width: 49px;
+    height: 25px;
+}
+
+.ledOn {
+    position: absolute;
+    top: 174px;
+    right: 15px
+}
+
+.ledOff {
+
+    position: absolute;
+    top: 174px;
+    right:15px
+}

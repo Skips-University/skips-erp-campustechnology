@@ -1,0 +1,13 @@
+.tag {
+    text-align: center;
+    color: #72BF78;
+    margin: 2rem;
+}
+
+.jigsawPuzzle {
+    width: 38%;
+    height: 38%;
+    border: 2px solid black;
+    margin: auto;
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.25);
+}

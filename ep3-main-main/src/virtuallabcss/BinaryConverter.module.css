@@ -1,0 +1,126 @@
+
+/* .container {
+  margin-top: 20px;
+} */
+
+.wrapperBox{
+  display: flex !important;
+  margin-top: 40px;
+}
+
+.notificationBar{
+  background-color: transparent;
+  border: 2px solid green;
+  border-radius: 10px;
+  max-width: 500px;
+  font-size: 16px !important;
+  padding: 10px;
+  margin-inline:auto  !important;
+  color: #007bff;
+  text-align: center;
+  
+}
+
+
+.inputSection {
+  width: 40%;
+  margin-right: 20px;
+ 
+}
+
+.resultsSection {
+  width: 60%;
+  margin: auto; 
+  background-color: #e4e2e2;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.typography {
+  background-color: #fff;
+  padding: 20px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.simulationButton {
+  position: relative;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100px;
+  margin-block: 20px;
+}
+
+.simulationButton:hover .dropdownMenu {
+  display: block;
+}
+
+/* .dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #5fa6f7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 200px;
+} */
+
+/* .dropdownItem {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #eeeeee77;
+  color: #fff;
+} */
+
+/* .buttonPrimary {
+  background-color: #007bff;
+  color: white;
+}
+
+.buttonSecondary {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+} */
+
+.binaryBit {
+  color: green;
+}
+
+.exponentBits {
+  color: blue;
+}
+
+.remainingBits {
+  color: green;
+}
+
+
+
+@media screen and (max-width: 600px){
+  /* .wrapperBox{
+    display: block !important;
+  } */
+
+  .inputSection{
+    width: 100%; 
+  }
+  .resultsSection {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    margin-top: 10px;
+  }
+
+}

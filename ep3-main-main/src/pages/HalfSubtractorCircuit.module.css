@@ -1,0 +1,105 @@
+.wrapper {
+    min-width: 1200px;
+    margin-top: 40px;
+    border: 2px solid black;
+    padding: 20px 10px;
+    
+}
+.heading{
+    text-align: center !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+
+}
+
+.instructionBox {
+    position: relative;
+}
+
+.instruction {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    background: cyan;
+    color: blue;
+    padding: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.329);
+    z-index: 999;
+}
+
+.instruction:hover {
+    background: lightblue;
+    color: black;
+}
+
+.diagram {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.logicGate {
+    margin: auto
+}
+
+.diagramWrapper {
+    position: relative;
+    width: 800px;
+}
+
+.switch {
+
+    width: 70px;
+
+}
+
+.powerBtnBox {
+    position: absolute;
+    top: 5px;
+    left: -60px;
+}
+
+.inpABtnBox {
+    position: absolute;
+    left: 84px;
+    top: 254px;
+}
+
+.inpBBtnBox {
+    position: absolute;
+    left: 78px;
+    top: 334px;
+}
+
+.ledBtn1 {
+    position: absolute;
+    width: 70px;
+    bottom: 79px;
+    right: -5px;
+}
+
+.ledBtn2 {
+    position: absolute;
+    width: 70px;
+    bottom: 78px;
+    right: -97px;
+}
+
+.tableWrapper{
+    max-width: 500px;
+    border-radius: 6px 6px 0px 0px;
+}
+/* .tableHeadRow{
+    background-color: cadetblue;
+
+} */
+/* th{
+    color: white !important;
+} */
+/* td{
+    border-top: 2px solid gray !important;
+    color: blue !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: bolder !important;
+} */

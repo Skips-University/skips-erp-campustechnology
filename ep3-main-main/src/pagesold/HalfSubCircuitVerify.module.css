@@ -1,0 +1,127 @@
+.wrapper {
+    min-width: 1200px;
+    margin-top: 40px;
+    border: 2px solid black;
+    padding: 20px 50px;
+    position: relative;
+}
+
+.heading {
+    text-align: center !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+
+}
+
+.instructionBox {
+    position: relative;
+}
+
+.instruction {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    background: cyan;
+    color: blue;
+    padding: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.329);
+    z-index: 999;
+}
+
+.instruction:hover {
+    background: lightblue;
+    color: black;
+}
+
+
+.logicGate {
+    margin: auto;
+}
+
+.diagramWrapper {
+    margin: 20px 0px 30px 0px;
+    padding: 40px 10px;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    border: 3px solid black;
+    border-radius: 4px;
+
+}
+
+
+.inputBox {
+    box-sizing: border-box;
+    position: absolute;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: bold;
+    width: 140px;
+}
+
+.inpA {
+    top: 82px;
+    left: 136px;
+}
+
+.inpB {
+    top: 160px;
+    left: 136px;
+}
+
+.inpDiff {
+    top: 82px;
+    right: 136px;
+}
+
+.inpBorrow {
+    top: 160px;
+    right: 136px;
+}
+
+.checkBtn {
+    width: 150px;
+    position: absolute;
+    right: -500px;
+    top: 30px;
+    padding: 10px;
+}
+
+.diagramBtn {
+    width: 120px;
+    position: absolute;
+    right: -510px;
+    top: -110px;
+    font-size: 10px !important;
+}
+
+.circuitImage {
+    position: absolute;
+    right: 90px;
+    bottom: 50px;
+
+}
+
+.tableWrapper {
+    max-width: 500px;
+    border-radius: 6px 6px 0px 0px;
+}
+
+.tableHeadRow {
+    background-color: cadetblue;
+
+}
+
+/* th {
+    color: white !important;
+} */
+
+td {
+    border-top: 2px solid gray !important;
+    color: blue !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: bolder !important;
+}

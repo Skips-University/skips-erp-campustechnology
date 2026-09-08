@@ -1,0 +1,55 @@
+
+.level {
+    display: inline-block;
+    animation: marquee 8s linear infinite;
+    font-size: 2.4rem !important;
+    
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100vw);
+    }
+  
+    100% {
+      transform: translateX(-10vw);
+    }
+  }
+.fadeInAnimation {
+    animation: fadeInBackground 4s forwards;
+    /* Trigger animation over 2 seconds */
+  }
+  
+  @keyframes fadeInBackground {
+    0% {
+    opacity: .1;
+      /* Starting color */
+    }
+  
+    10% {
+        opacity: .2;
+    }
+  
+    20% {
+        opacity: .4;
+    }
+  
+    40% {
+        opacity: .6;
+    }
+  
+    60% {
+        opacity: .7;
+  
+    }
+  
+    80% {
+        opacity: .8;
+  
+    }
+  
+    100% {
+        opacity: 1;
+      
+    }
+  }

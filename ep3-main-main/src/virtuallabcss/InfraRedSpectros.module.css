@@ -1,0 +1,157 @@
+.stick {
+  width: 30px;
+  height: 100px;
+  position: absolute;
+  top: -20px;
+  left: 100px;
+  background-color: lightgrey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset
+}
+
+.slidein {
+  animation-duration: 1.5s;
+  animation-name: slidein;
+  animation-iteration-count: 5;
+  animation-direction: alternate;
+}
+
+
+
+@keyframes slidein {
+  from {
+    translate: 0vw 0;
+    scale: 100% 1;
+  }
+
+  to {
+    translate: 4vw 0;
+    scale: 100% 1;
+  }
+}
+
+.greenSolution {
+  width: 178px;
+  height: 78px;
+  background-color: rgba(0, 128, 255, 0);
+  /* Initial transparent background */
+  position: absolute;
+  top: 45px;
+  left: 42px;
+  border-radius: 100%;
+}
+
+
+.purpleSolution {
+  width: 128px;
+  height: 78px;
+  background-color: rgba(53, 2, 77, 0);
+  position: absolute;
+  top: 45px;
+  left: 42px;
+  border-radius: 100%;
+}
+
+.irplategreenSolution {
+  width: 88px;
+  height: 53px;
+  background-color: rgba(0, 128, 255, 0);
+  position: absolute;
+  top: 16px;
+  left: 23px;
+  border-radius: 100%;
+}
+
+.greenSolution.fadeInAnimation {
+  animation: fadeInBackground 4s forwards;
+  /* Trigger animation over 2 seconds */
+}
+
+.irplategreenSolution.fadeInAnimation {
+  animation: fadeInBackground 1.3s forwards;
+  /* Trigger animation over 2 seconds */
+}
+
+@keyframes fadeInBackground {
+  0% {
+    background-color: rgba(0, 128, 255, 0.1);
+    /* Starting color */
+  }
+
+  10% {
+    background-color: rgba(5, 100, 5, .2);
+  }
+
+  20% {
+    background-color: rgba(5, 100, 5, .3);
+  }
+
+  40% {
+    background-color: rgba(5, 100, 5, .5);
+  }
+
+  60% {
+    background-color: rgba(5, 100, 5, .7);
+
+  }
+
+  80% {
+    background-color: rgba(5, 100, 5, .8);
+
+  }
+
+  100% {
+    background-color: rgba(5, 100, 5, 1);
+    /* Final color */
+  }
+}
+
+.movingAnimation {
+  animation: updown 4s forwards;
+}
+
+@keyframes updown {
+  0% {
+    transform: translate(0px, -10px);
+  }
+
+  100% {
+    transform: translate(240px, -35px);
+
+  }
+}
+
+
+.irplateSliding {
+  animation: slideRight 4s forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+
+  }
+
+  100% {
+    transform: translate(280px, 80px);
+    opacity: 0;
+
+  }
+}
+
+.level {
+  display: inline-block;
+  animation: marquee 8s linear infinite;
+  font-size: 2.4rem !important;
+  
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(-10vw);
+  }
+}

@@ -1,0 +1,280 @@
+.container {
+    position: relative;
+    margin-left: 2%;
+    padding: 2px 2px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    margin-right: 2%;
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    /* height: 650px; */
+}
+
+.videoContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.videoPlayer {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+.controlPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.playPauseButton,
+.nextButton,
+.prevButton {
+    color: #ea5b0e;
+}
+
+.progressSlider {
+    width: 100%;
+}
+
+.durationText {
+    color: #bbb;
+    text-align: center;
+    margin: 8px 0;
+}
+
+.textImageContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 16px;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.textImageContent.fadeIn {
+    opacity: 1;
+    /* Visible when class is added */
+}
+
+.textOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    /* width: 100%; */
+    padding: 16px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0);
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    /* Initially hidden */
+}
+
+.textOverlay.fadeIn {
+    opacity: 1;
+    /* Visible when class is added */
+}
+
+/* .textImageContent img {
+    width: 100%;
+    height: 652px;
+    object-fit: cover;
+    border-radius: 5px;
+} */
+
+.textImageContent img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    /* object-fit: cover; */
+    border-radius: 5px;
+}
+
+
+.textContent {
+    padding: 16px;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    color: #fff;
+    /* Initially hidden */
+}
+
+.textContent.fadeIn {
+    opacity: 1;
+    /* Visible when class is added */
+}
+
+.voiceControls {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    opacity: 0.7;
+}
+
+.containerContent {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: #424949;
+    margin: 8px 0;
+}
+
+.voiceSelect {
+    margin-right: 16px;
+}
+
+.speakButton {
+    color: #008000 !important;
+}
+
+.handlerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Keyframes for fade-in and fade-out animations */
+
+/* .fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.fadeOut {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+} */
+
+/* Slide transition */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Zoom transition */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* Flip transition */
+@keyframes flipIn {
+    from {
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flipOut {
+    from {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+}
+
+/* CSS classes for transitions */
+.slideIn {
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.slideOut {
+    animation: slideOut 0.6s ease-in forwards;
+}
+
+.zoomIn {
+    animation: zoomIn 0.6s ease-out forwards;
+}
+
+.zoomOut {
+    animation: zoomOut 0.6s ease-in forwards;
+}
+
+.flipIn {
+    animation: flipIn 0.6s ease-out forwards;
+}
+
+.flipOut {
+    animation: flipOut 0.6s ease-in forwards;
+}

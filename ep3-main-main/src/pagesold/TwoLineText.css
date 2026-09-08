@@ -1,0 +1,16 @@
+.two-line-wrapper {
+  height: 4.2em; /* approx 2 lines (1.3em each line) */
+  line-height: 1.3em;
+  overflow: hidden;
+  position: relative;
+}
+
+.two-line-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 100%;
+}

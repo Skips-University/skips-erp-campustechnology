@@ -1,0 +1,66 @@
+.containerWrapper {
+    margin: 20px;
+}
+
+.container {
+    margin-bottom: 20px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imageItem {
+    /* margin: 10px; */
+    cursor: pointer;
+}
+
+.dropContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.dropZone {
+    /* border: 2px dashed #ccc; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    /* margin: 10px 0; */
+    min-height: 100px;
+}
+
+.droppedImage {
+    width: 192px;
+    height: 100px;
+    object-fit: contain;
+}
+
+
+.imageDropped0 {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.imageDropped1 {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    /* bottom: 20px; */
+}
+
+.imageDropped2 {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    /* top: 17px; */
+}
+
+.imageDropped3 {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    /* top: 17px; */
+}

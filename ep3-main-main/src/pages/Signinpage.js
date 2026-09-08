@@ -1,0 +1,449 @@
+import React, { useState, useRef, useContext, useEffect }  from 'react';
+import { TextField, Button, Grid, Typography, Box, IconButton, InputAdornment } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from 'react-router-dom';
+import global1 from './global1';
+import ep1 from '../api/ep1';
+import { configureCountryTerminology } from '../utils/countryTerminology';
+
+const orthintelLogoUrl = "https://epaathsalagenai.s3.ap-southeast-2.amazonaws.com/orthintellogo.jpeg";
+
+const Signup = () => {
+
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const isOrthintelDomain = typeof window !== "undefined" && window.location.hostname.toLowerCase().includes("orthintel");
+
+    useEffect(() => {
+        if (isOrthintelDomain) configureCountryTerminology("USA");
+    }, [isOrthintelDomain]);
+
+    const searchapi = async () => {
+        //alert('checking ' + email + ' ' + password);
+
+    const username=email;
+
+        if(!username || !password) {
+            alert('Please enter username and password');
+            return;
+        }
+        
+        const response = await ep1.get('/api/v1/loginapi', {
+            params: {
+                email: username.toLowerCase(),
+                password: password
+
+            }
+        });
+        //alert(response.data);
+        console.log(response.data);
+    
+        if (response.data.status == "Success") {
+            const user=response.data.user;
+            const name=response.data.name;
+            const colid=response.data.colid;
+            const role=response.data.role;
+
+            const statuslog=parseInt(response.data.statuslog);
+
+            if(statuslog==0) {
+              alert('Access is not yet activated. Please click on welcome email from reminder@epaathsala.com');
+              return;
+            }
+            // localStorage.setItem('user', user);
+            // localStorage.setItem('name', name);
+            // localStorage.setItem('colid', colid);
+            // localStorage.setItem('role', role);
+            const department=response.data.department;
+            // localStorage.setItem('department', department);
+            // localStorage.setItem('admincolid', colid);
+            global1.studid = response.data.user;
+            global1.user = response.data.user;
+            global1.name = response.data.name;
+            global1.name1 = response.data.name;
+            global1.colid = response.data.colid;
+            global1.admincolid = response.data.colid;
+            global1.token = response.data.token;
+            global1.department = response.data.department;
+            global1.programcode = response.data.programcode;
+
+            const lastlogin = new Date(response.data.lastlogin);
+            global1.lastlogin = lastlogin.toString();
+            if (!response.data.lastlogin || Number.isNaN(lastlogin.getTime()) || lastlogin.getTime() < Date.now()) {
+              alert('Login access is expired.');
+              return;
+            }
+
+            global1.regno = response.data.regno;
+
+            global1.semester = response.data.semester;
+            global1.section = response.data.section;
+            global1.role=response.data.role;
+
+            global1.aqaryear='2020-21';
+            global1.calendaryear='2020';
+            global1.assessment='2017-18,2018-19,2019-20,2020-21,2021-22';
+            
+    
+            const response1 = await ep1.get('/api/v1/getinstitutionname', {
+                params: {
+                    user: user,
+                    token: response.data.token,
+                    colid: colid
+                }
+            });
+    
+            global1.instype='';
+            global1.insname='';
+    
+            global1.bulkuploadurl='https://canvasapi5u.azurewebsites.net/';
+
+            var status1='Submitted';
+    
+            try {
+                status1=response1.data.data.classes[0].status;
+            } catch(err) {
+    
+            }
+            if(status1=='Blocked') {
+                // return <Navigate to="/noaccess" />;
+                alert('Access is suspended.')
+                return;
+    
+            }
+
+            if(status1=='Auto') {
+              // return <Navigate to="/noaccess" />;
+              global1.autorenew='Yes';
+  
+          }
+    
+            try {
+               
+                global1.instype=response1.data.data.classes[0].type;
+                //localStorage.setItem('instype', response1.data.data.classes[0].type);
+            } catch(err) {
+    
+            }
+            try {
+                
+                global1.insname=response1.data.data.classes[0].institutionname;
+                //localStorage.setItem('insname', response1.data.data.classes[0].institutionname);
+            } catch(err) {
+    
+            }
+
+            try {
+                
+                global1.logo=response1.data.data.classes[0].logo;
+                //localStorage.setItem('logo', response1.data.data.classes[0].logo);
+            } catch(err) {
+    
+            }
+    
+            try {
+             
+                global1.univid=response1.data.data.classes[0].admincolid;
+                //localStorage.setItem('univid', response1.data.data.classes[0].admincolid);
+            } catch(err) {
+    
+            }
+    
+            try {
+            
+                global1.collegecode=response1.data.data.classes[0].institutioncode;
+                //localStorage.setItem('collegecode', response1.data.data.classes[0].institutioncode);
+            } catch(err) {
+    
+            }
+            configureCountryTerminology(isOrthintelDomain ? "USA" : "");
+            try {
+                const countryRes = await ep1.get('/api/v2/country-configuration-default', {
+                    params: { colid }
+                });
+                if (countryRes.data?.country) {
+                    configureCountryTerminology(countryRes.data.country);
+                }
+            } catch (err) {
+
+            }
+            var name1=name;
+            try {
+                
+                name1=name1 + ' ' + response1.data.data.classes[0].institutionname;
+                //localStorage.setItem('name1', name1);
+                
+            } catch(err) {
+    
+            }
+    
+            const normalizedRole = String(response.data.role || '').trim().toLowerCase();
+            const showConfiguration = normalizedRole === 'all' || normalizedRole === 'admin';
+
+            if (normalizedRole === 'student') {
+                const response12 = await ep1.get('/api/v1/getcurrentyearbyprg', {
+                    params: {
+                        programcode: response.data.programcode,
+                        semester: response.data.semester,
+                        section: response.data.section,
+                        token: response.data.token,
+                        colid: colid
+                    }
+                });
+                var lmsyear='2022-23';
+                console.log(response12.data.data);
+    
+                
+                try {
+                    lmsyear= response12.data.data.classes[0].year;
+    
+                } catch (err) {
+    
+                }
+                global1.lmsyear=lmsyear;
+                navigate('/studentdashboard');
+                // return <Navigate to="/dashstud1" />;
+               
+            } else if (normalizedRole === 'faculty') {
+             
+                // navigate('/dashmmfaccourses')
+                navigate('/facultydashboard');
+                } else if (normalizedRole === 'adminold') {
+                
+                navigate(showConfiguration ? '/configuration' : '/dashmncas11admin')
+            } else if (normalizedRole === 'admin') {
+                
+                navigate('/configuration');
+            } else if (normalizedRole === 'super') {
+                navigate(showConfiguration ? '/configuration' : '/dashdashfacnew');
+                //history.replace('/dashmydetails');
+                // return <Navigate to="/viewcourse1" />;
+            } else if (normalizedRole === 'hod') {
+                navigate(showConfiguration ? '/configuration' : '/dashdashfacnew');
+                // return <Navigate to="/viewcourse1" />;
+            } else {
+               //navigate('/dashmmfaccourses');
+              navigate(showConfiguration ? '/configuration' : '/dashdashfacnew');
+
+            }
+        }
+        else {
+            alert('Invalid Username or Password. Please try again.');
+            //setTerm2('Invalid Username or Password. Please try again.');
+        }
+        
+       
+    };
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#1343c7",
+        position: "relative",
+        overflow: "hidden",
+        marginX: "auto",
+        maxWidth: "1500px",
+        height:{xs:"100%" ,md: "100vh"}
+      }}
+    >
+      {/* Background div behind the content */}
+      <div
+        style={{
+          position: "absolute",
+          maxWidth: "850px",
+          width: "100%",
+          height: "200vh",
+          backgroundColor: "#9fadf0",
+          right: "-170px",
+          top: "-150px",
+          rotate: "36deg",
+          
+        }}
+        className='backgroundBox'
+      />
+
+      {/* Main content */}
+      <Box
+        sx={{
+          height: "100vh",
+          boxSizing: "border-box",
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyContent: 'center',
+          alignItems: "center",
+          gap: { xs: "20px", sm: "30px", md: "150px" },
+          marginX: "auto",
+          color: "white",
+          padding: { xs: "20px", sm: "30px" },
+          backgroundColor: 'transparent',
+          width: { xs: "100%", md: "90%" }
+        }}
+      >
+        <Box sx={{ width: { xs: "90%", sm: "70%", md: "35%" }, display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <Box
+            sx={{
+              padding: { xs: 2, sm: 4 },
+              boxShadow: 3,
+              borderRadius: 2,
+              bgcolor: 'background.paper',
+              zIndex: 1,
+              width: '100%',
+            }}
+          >
+            <div style={{ alignItems: 'center', width: 300, marginLeft: 100}}>
+             {isOrthintelDomain ? (
+              <Box
+                component="img"
+                src={orthintelLogoUrl}
+                alt="OrthIntel"
+                sx={{
+                  width: 170,
+                  height: 70,
+                  objectFit: "contain",
+                  display: "block",
+                  marginBottom: "30px"
+                }}
+              />
+             ) : (
+              <img
+                src="https://campus.technology/images/logo.png"
+                alt="ct_logo"
+                width="150"
+                height="60"
+                style={{
+                  objectFit: "cover",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "center",
+                  marginBottom: 30
+                }}
+              />
+             )}
+            </div>
+            {/* <Typography variant="h4" align="center" gutterBottom color='black'>
+              Login
+            </Typography> */}
+            <form>
+              <Grid container spacing={2}>
+                {/* <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Full Name"
+                    variant="outlined"
+                    required
+                    size="small"
+                  />
+                </Grid> */}
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Email"
+                    variant="outlined"
+                    type="email"
+                    size="small"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Password"
+                    variant="outlined"
+                    type={showPassword ? "text" : "password"}
+                    size="small"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            onMouseDown={(event) => event.preventDefault()}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                </Grid>
+                {/* <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Confirm Password"
+                    variant="outlined"
+                    type="password"
+                    size="small"
+                    required
+                  />
+                </Grid> */}
+                <Grid item xs={12}>
+                  <Button
+                   
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    sx={{ padding: 1.5 }}
+                    onClick={searchapi}
+                  >
+                    Login
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="body1" align="center" color='black' sx={{ mt: 2, mb: 1 }}>
+                    Don't have an account? <a href="/signuppage">Sign up</a>
+                  </Typography>
+                  <Typography variant="body1" align="center" color='black' sx={{ mt: 2, mb: 1 }}>
+                    <a href="/forgotpassword">Forgot password</a>
+                  </Typography>
+                </Grid>
+                {/* <Grid item xs={12}>
+                  <Typography variant="body1" align="center" color='black' sx={{ mt: 2, mb: 1 }}>
+                    Or sign up with
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} />
+                <Grid item xs={2}>
+                  <a href='#' sx={{ mb: 1 }}>
+                    <GoogleIcon />
+                  </a>
+                </Grid>
+           
+                <Grid item xs={2}>
+                  <a href='#' sx={{ mb: 1 }}>
+                    <FacebookIcon />
+                  </a>
+                </Grid> */}
+                <Grid item xs={4} />
+              </Grid>
+            </form>
+          </Box>
+        </Box>
+        <Box sx={{ 
+          width: { xs: "90%", sm: "70%", md: "45%" }, 
+          zIndex: 1, 
+          textAlign: { xs: "center", md: "right" }, 
+          padding: { xs: 2, md: 0 } 
+        }}>
+          <Typography variant='h2' fontWeight="bold" fontSize={{ xs: '1.5rem', sm: '2.5rem', md: '3rem' }} textTransform="uppercase" display={{xs:"none",md:"block"}}>
+            AI enabled ERP, LMS and Accreditation Management Software
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default Signup;

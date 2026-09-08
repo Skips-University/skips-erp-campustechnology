@@ -1,0 +1,24 @@
+ <ListItem button component={RouterLink} to="/dashmwbin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste bin" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwcolschedule1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Collection schedule" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwdisposal1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste disposal" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwspill1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste spill" />}
+</ListItem>

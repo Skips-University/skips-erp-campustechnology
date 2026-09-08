@@ -1,0 +1,52 @@
+.table-container {
+      max-width: 800px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-color: #ffffff;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #F2D2CB;
+      color: #270202;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f6fa;
+    }
+
+    tr:hover {
+      background-color: #e1ecf4;
+    }
+
+      th {
+      border: none; /* explicitly no borders on rows */
+    }
+
+      table {
+      border: none; /* explicitly no borders on rows */
+    }
+
+     tr {
+      border: none; /* explicitly no borders on rows */
+    }
+
+    td {
+      border: none; /* remove default table cell borders */
+    }
