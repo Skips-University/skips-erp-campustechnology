@@ -50,7 +50,7 @@ import heroGraphic from "../assets/homepage-hero.svg";
 import modulesGraphic from "../assets/homepage-modules.svg";
 
 const drawerWidth = 270;
-const logoUrl = "https://campus.technology/images/logo.png";
+const logoUrl = "https://skipsuniversity.edu.in/wp-content/uploads/2023/09/LOGO-2.png";
 
 const navigation = [
   { label: "Home", href: "#home" },

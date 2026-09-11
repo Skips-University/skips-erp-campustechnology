@@ -312,7 +312,7 @@ const Signup = () => {
               />
              ) : (
               <img
-                src="https://campus.technology/images/logo.png"
+                src="https://skipsuniversity.edu.in/wp-content/uploads/2023/09/LOGO-2.png"
                 alt="ct_logo"
                 width="150"
                 height="60"

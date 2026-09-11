@@ -68,7 +68,7 @@ export default function SignupPage() {
       <Paper sx={{ width: '100%', maxWidth: 620, p: { xs: 2, md: 4 }, borderRadius: 2 }}>
         <Box textAlign="center" mb={3}>
           <img
-            src="https://campus.technology/images/logo.png"
+            src="https://skipsuniversity.edu.in/wp-content/uploads/2023/09/LOGO-2.png"
             alt="Campus Technology"
             width="170"
             height="68"
