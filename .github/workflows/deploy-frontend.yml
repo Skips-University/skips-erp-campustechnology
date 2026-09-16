@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           cd ep3-main-main
-          npm ci
+          npm install
           npm run build --if-present
 
       - name: Deploy to Azure Web App
