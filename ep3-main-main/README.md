@@ -72,3 +72,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 - we added this to auzue at 17th sep 2026
 - setup main brnach for this 
+
+created new clint id and relvent id from azure and added to github 

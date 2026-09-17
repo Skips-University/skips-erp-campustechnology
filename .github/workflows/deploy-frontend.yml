@@ -20,10 +20,16 @@ jobs:
         with:
           node-version: '24.x'
 
-      - name: npm install, build, and test
+      # - name: npm install, build, and test
+      #   working-directory: ep3-main-main
+        # run: |
+        #   npm install
+        #   npm run build --if-present
+        #   npm run test --if-present
+      - name: Install Dependencies, Build, and Test
         working-directory: ep3-main-main
         run: |
-          npm install
+          npm ci
           npm run build --if-present
           npm run test --if-present
 
@@ -36,9 +42,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    # permissions:
+    #   id-token: write
+    #   contents: read
     permissions:
-      id-token: write
-      contents: read
+        id-token: write
+        contents: read
 
     steps:
       - name: Download artifact from build job
@@ -48,10 +57,14 @@ jobs:
 
       - name: Login to Azure
         uses: azure/login@v2
+        # with:
+        #   client-id: ${{ secrets.__clientidsecretname__ }}
+        #   tenant-id: ${{ secrets.__tenantidsecretname__ }}
+        #   subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+            client-id: ${{ secrets.AZURE_CLIENT_ID }}
+            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
