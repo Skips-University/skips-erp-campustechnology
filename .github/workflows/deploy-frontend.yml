@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
+name: Build and deploy frontend to Azure
 
 on:
   push:
@@ -11,15 +11,58 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ep3-main-main/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: ep3-main-main
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: ep3-main-main
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          GENERATE_SOURCEMAP: "false"
+          DISABLE_ESLINT_PLUGIN: "true"
+        run: npm run build
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'skipsuniversity1'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
-          package: './ep3-main-main'
+          package: './ep3-main-main/build'
+
+
+# name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
+
+#       - name: Deploy to Azure Web App
+#         uses: azure/webapps-deploy@v3
+#         with:
+#           app-name: 'skipsuniversity1'
+#           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
+#           package: './ep3-main-main'
 
 
 # name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
