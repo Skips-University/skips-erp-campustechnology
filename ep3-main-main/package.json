@@ -61,8 +61,8 @@
     "youtube-search-api": "^1.2.2"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS='--no-experimental-webstorage' react-scripts --max-old-space-size=8192 start",
-    "build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true react-scripts --max-old-space-size=4096 build",
+    "start": "cross-env NODE_OPTIONS=\"--no-experimental-webstorage --max-old-space-size=4096\" react-scripts start",
+    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
