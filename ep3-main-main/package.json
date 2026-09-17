@@ -62,7 +62,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_OPTIONS='--no-experimental-webstorage' react-scripts --max-old-space-size=8192 start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true react-scripts --max-old-space-size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
