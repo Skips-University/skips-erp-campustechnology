@@ -74,3 +74,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - setup main brnach for this 
 
 created new clint id and relvent id from azure and added to github 
+
+move this azure chages to cloud 
