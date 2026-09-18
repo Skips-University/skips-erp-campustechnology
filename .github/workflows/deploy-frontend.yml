@@ -1,77 +1,4 @@
-name: Build and Deploy Frontend to Azure
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: ep3-main-main/package-lock.json
-
-      - name: Install frontend dependencies
-        working-directory: ep3-main-main
-        run: npm ci
-
-      - name: Build frontend
-        working-directory: ep3-main-main
-        env:
-          NODE_OPTIONS: "--max-old-space-size=4096"
-          GENERATE_SOURCEMAP: "false"
-          DISABLE_ESLINT_PLUGIN: "true"
-        run: npm run build
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: ep3-main-main/build
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: react-build
-
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'skipsuniversity1'
-          package: .
-
-
-
-# name: Build and deploy frontend to Azure
+# name: Build and Deploy Frontend to Azure
 
 # on:
 #   push:
@@ -79,8 +6,12 @@ jobs:
 #       - main
 #   workflow_dispatch:
 
+# permissions:
+#   id-token: write
+#   contents: read
+
 # jobs:
-#   deploy:
+#   build:
 #     runs-on: ubuntu-latest
 
 #     steps:
@@ -106,57 +37,24 @@ jobs:
 #           DISABLE_ESLINT_PLUGIN: "true"
 #         run: npm run build
 
-#       - name: Deploy to Azure Web App
-#         uses: azure/webapps-deploy@v3
+#       - name: Upload build artifact
+#         uses: actions/upload-artifact@v4
 #         with:
-#           app-name: 'skipsuniversity1'
-#           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
-#           package: './ep3-main-main/build'
+#           name: react-build
+#           path: ep3-main-main/build
 
-
-# +above is one who able to deploye but not working peorerly due to hip memoery issue 
-
-# name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
-
-# jobs:
 #   deploy:
 #     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v4
-
-#       - name: Deploy to Azure Web App
-#         uses: azure/webapps-deploy@v3
-#         with:
-#           app-name: 'skipsuniversity1'
-#           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
-#           package: './ep3-main-main'
-
-
-# name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
+#     needs: build
 #     permissions:
 #       id-token: write
 #       contents: read
 
 #     steps:
-#       - uses: actions/checkout@v4
+#       - name: Download build artifact
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: react-build
 
 #       - name: Login to Azure
 #         uses: azure/login@v2
@@ -169,121 +67,70 @@ jobs:
 #         uses: azure/webapps-deploy@v3
 #         with:
 #           app-name: 'skipsuniversity1'
-#           slot-name: 'Production'
-#           package: './ep3-main-main'
-
-# name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-
-#     steps:
-#       - uses: actions/checkout@v4
-
-#       - name: Set up Node.js version
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: '24.x'
-
-#       # - name: npm install, build, and test
-#       #   working-directory: ep3-main-main
-#         # run: |
-#         #   npm install
-#         #   npm run build --if-present
-#         #   npm run test --if-present
-#       - name: Install Dependencies, Build, and Test
-#         working-directory: ep3-main-main
-#         env:
-#           NODE_OPTIONS: "--max-old-space-size=4096"
-#           GENERATE_SOURCEMAP: "false"
-#           DISABLE_ESLINT_PLUGIN: "true"
-#         run: |
-#           npm ci
-#           npm run build --if-present
-#           npm run test --if-present
-
-#       - name: Upload artifact for deployment job
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: node-app
-#           path: ep3-main-main
-
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     # permissions:
-#     #   id-token: write
-#     #   contents: read
-#     permissions:
-#         id-token: write
-#         contents: read
-
-#     steps:
-#       - name: Download artifact from build job
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: node-app
-
-#       - name: Login to Azure
-#         uses: azure/login@v2
-#         # with:
-#         #   client-id: ${{ secrets.__clientidsecretname__ }}
-#         #   tenant-id: ${{ secrets.__tenantidsecretname__ }}
-#         #   subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
-#         with:
-#             client-id: ${{ secrets.AZURE_CLIENT_ID }}
-#             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-#             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-#       - name: Deploy to Azure Web App
-#         id: deploy-to-webapp
-#         uses: azure/webapps-deploy@v3
-#         with:
-#           app-name: 'skipsuniversity1'
-#           slot-name: 'Production'
 #           package: .
 
-# # name: Deploy Frontend to Azure
+
+
+# # name: Build and deploy frontend to Azure
 
 # # on:
 # #   push:
 # #     branches:
 # #       - main
-# #     paths:
-# #       - 'ep3-main-main/**'
 # #   workflow_dispatch:
 
 # # jobs:
-# #   build-and-deploy:
+# #   deploy:
 # #     runs-on: ubuntu-latest
-# #     timeout-minutes: 30
-# #     permissions:
-# #       contents: read
 
 # #     steps:
-# #       - name: Checkout Code
+# #       - name: Checkout repository
 # #         uses: actions/checkout@v4
 
-# #       - name: Set up Node.js
+# #       - name: Setup Node.js
 # #         uses: actions/setup-node@v4
 # #         with:
-# #           node-version: '20'
+# #           node-version: 20
+# #           cache: npm
+# #           cache-dependency-path: ep3-main-main/package-lock.json
 
-# #       - name: Install Dependencies & Build
-# #         run: |
-# #           cd ep3-main-main
-# #           npm install
-# #           npm run build --if-present
-# #           npm run test --if-present
+# #       - name: Install frontend dependencies
+# #         working-directory: ep3-main-main
+# #         run: npm ci
+
+# #       - name: Build frontend
+# #         working-directory: ep3-main-main
+# #         env:
+# #           NODE_OPTIONS: "--max-old-space-size=4096"
+# #           GENERATE_SOURCEMAP: "false"
+# #           DISABLE_ESLINT_PLUGIN: "true"
+# #         run: npm run build
+
+# #       - name: Deploy to Azure Web App
+# #         uses: azure/webapps-deploy@v3
+# #         with:
+# #           app-name: 'skipsuniversity1'
+# #           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
+# #           package: './ep3-main-main/build'
+
+
+# # +above is one who able to deploye but not working peorerly due to hip memoery issue 
+
+# # name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
+
+# # on:
+# #   push:
+# #     branches:
+# #       - main
+# #   workflow_dispatch:
+
+# # jobs:
+# #   deploy:
+# #     runs-on: ubuntu-latest
+
+# #     steps:
+# #       - name: Checkout Repository
+# #         uses: actions/checkout@v4
 
 # #       - name: Deploy to Azure Web App
 # #         uses: azure/webapps-deploy@v3
@@ -291,3 +138,156 @@ jobs:
 # #           app-name: 'skipsuniversity1'
 # #           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
 # #           package: './ep3-main-main'
+
+
+# # name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
+
+# # on:
+# #   push:
+# #     branches:
+# #       - main
+# #   workflow_dispatch:
+
+# # jobs:
+# #   deploy:
+# #     runs-on: ubuntu-latest
+# #     permissions:
+# #       id-token: write
+# #       contents: read
+
+# #     steps:
+# #       - uses: actions/checkout@v4
+
+# #       - name: Login to Azure
+# #         uses: azure/login@v2
+# #         with:
+# #           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+# #           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+# #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+# #       - name: Deploy to Azure Web App
+# #         uses: azure/webapps-deploy@v3
+# #         with:
+# #           app-name: 'skipsuniversity1'
+# #           slot-name: 'Production'
+# #           package: './ep3-main-main'
+
+# # name: Build and deploy Node.js app to Azure Web App - skipsuniversity1
+
+# # on:
+# #   push:
+# #     branches:
+# #       - main
+# #   workflow_dispatch:
+
+# # jobs:
+# #   build:
+# #     runs-on: ubuntu-latest
+# #     permissions:
+# #       contents: read
+
+# #     steps:
+# #       - uses: actions/checkout@v4
+
+# #       - name: Set up Node.js version
+# #         uses: actions/setup-node@v4
+# #         with:
+# #           node-version: '24.x'
+
+# #       # - name: npm install, build, and test
+# #       #   working-directory: ep3-main-main
+# #         # run: |
+# #         #   npm install
+# #         #   npm run build --if-present
+# #         #   npm run test --if-present
+# #       - name: Install Dependencies, Build, and Test
+# #         working-directory: ep3-main-main
+# #         env:
+# #           NODE_OPTIONS: "--max-old-space-size=4096"
+# #           GENERATE_SOURCEMAP: "false"
+# #           DISABLE_ESLINT_PLUGIN: "true"
+# #         run: |
+# #           npm ci
+# #           npm run build --if-present
+# #           npm run test --if-present
+
+# #       - name: Upload artifact for deployment job
+# #         uses: actions/upload-artifact@v4
+# #         with:
+# #           name: node-app
+# #           path: ep3-main-main
+
+# #   deploy:
+# #     runs-on: ubuntu-latest
+# #     needs: build
+# #     # permissions:
+# #     #   id-token: write
+# #     #   contents: read
+# #     permissions:
+# #         id-token: write
+# #         contents: read
+
+# #     steps:
+# #       - name: Download artifact from build job
+# #         uses: actions/download-artifact@v4
+# #         with:
+# #           name: node-app
+
+# #       - name: Login to Azure
+# #         uses: azure/login@v2
+# #         # with:
+# #         #   client-id: ${{ secrets.__clientidsecretname__ }}
+# #         #   tenant-id: ${{ secrets.__tenantidsecretname__ }}
+# #         #   subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+# #         with:
+# #             client-id: ${{ secrets.AZURE_CLIENT_ID }}
+# #             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+# #             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+# #       - name: Deploy to Azure Web App
+# #         id: deploy-to-webapp
+# #         uses: azure/webapps-deploy@v3
+# #         with:
+# #           app-name: 'skipsuniversity1'
+# #           slot-name: 'Production'
+# #           package: .
+
+# # # name: Deploy Frontend to Azure
+
+# # # on:
+# # #   push:
+# # #     branches:
+# # #       - main
+# # #     paths:
+# # #       - 'ep3-main-main/**'
+# # #   workflow_dispatch:
+
+# # # jobs:
+# # #   build-and-deploy:
+# # #     runs-on: ubuntu-latest
+# # #     timeout-minutes: 30
+# # #     permissions:
+# # #       contents: read
+
+# # #     steps:
+# # #       - name: Checkout Code
+# # #         uses: actions/checkout@v4
+
+# # #       - name: Set up Node.js
+# # #         uses: actions/setup-node@v4
+# # #         with:
+# # #           node-version: '20'
+
+# # #       - name: Install Dependencies & Build
+# # #         run: |
+# # #           cd ep3-main-main
+# # #           npm install
+# # #           npm run build --if-present
+# # #           npm run test --if-present
+
+# # #       - name: Deploy to Azure Web App
+# # #         uses: azure/webapps-deploy@v3
+# # #         with:
+# # #           app-name: 'skipsuniversity1'
+# # #           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
+# # #           package: './ep3-main-main'
